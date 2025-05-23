@@ -1,72 +1,144 @@
-STM32 UART to FastAPI Web Monitor
-Overview
-This project showcases a real-time data monitoring system that captures data sent from an STM32F407G-DISC microcontroller via UART and displays it on a web interface using FastAPI. The system leverages WebSocket technology to provide live updates, making it ideal for learning about embedded systems, serial communication, and web-based data visualization. Designed as an educational project, it demonstrates the integration of hardware and software for IoT applications.
-Features
+Certainly! Here's the improved and more visually appealing version of your `README.md` in English, with better formatting and structure:
 
-Real-Time Data Display: View UART data from the STM32 microcontroller instantly on a web page.
-WebSocket Integration: Ensures seamless, live updates of incoming data without manual refresh.
-Simple Web Interface: Clean and user-friendly HTML-based dashboard for monitoring data with timestamps.
-Lightweight Backend: Utilizes FastAPI for efficient and easy-to-learn API and WebSocket handling.
-Educational Focus: Ideal for beginners to explore embedded systems and web development integration.
+---
 
-Prerequisites
-To set up and run this project, ensure you have the following:
-Hardware
+# 📡 STM32 UART to FastAPI Web Monitor
 
-STM32F407G-DISC microcontroller (or similar STM32 board with UART support).
-USB-to-UART converter (e.g., ST-Link or FTDI) for serial communication with a computer.
+**Live monitor your embedded system data via a modern web interface.**
 
-Software
+This project demonstrates a real-time data monitoring system where data transmitted from an **STM32F407G-DISC** microcontroller via **UART** is displayed on a live dashboard built with **FastAPI** and **WebSockets**. It is designed as an educational resource to bridge the gap between embedded hardware and modern web technologies.
 
-STM32CubeIDE or equivalent for programming the microcontroller.
-Python 3.8 or higher for running the web server.
-A modern web browser (e.g., Chrome, Firefox) to view the data.
-Optional: Tera Term for initial UART communication testing.
+---
 
-Installation
-Follow these steps to set up the project:
+## ✨ Features
 
-Clone the RepositoryDownload the project files from the GitHub repository to your local machine.
+- 🔄 **Real-Time Data Display**
+  Instantly view incoming UART data from the STM32 on a web interface.
 
-Set Up the Python EnvironmentCreate a virtual environment and install the required Python packages: FastAPI, Uvicorn, and PySerial. This ensures the web server and UART communication work seamlessly.
+- 🔌 **WebSocket Integration**
+  Live updates without refreshing the page.
 
-Configure the Microcontroller
+- 🖥️ **Simple and Clean UI**
+  A minimalist HTML-based interface with timestamped data entries.
 
-Use STM32CubeIDE to program the STM32F407G-DISC.
-Configure UART2 with a baud rate of 9600 for data transmission.
-Flash the firmware to the microcontroller to start sending data (e.g., sample messages or sensor readings).
+- ⚡ **Lightweight FastAPI Backend**
+  Easy-to-learn, high-performance API with WebSocket support.
 
-Set Up the Serial Port
+- 🎓 **Educational Project**
+  Perfect for beginners exploring embedded systems and web development integration.
 
-Identify the serial port used by the STM32 (e.g., COM14 on Windows, /dev/ttyUSB0 on Linux).
-Update the project configuration with the correct port and ensure the baud rate matches the microcontroller settings.
+---
 
-Usage
+## 📦 Prerequisites
 
-Start the Web ServerLaunch the FastAPI server to begin reading UART data and broadcasting it via WebSocket.
+### 🔧 Hardware
 
-Access the Web InterfaceOpen a web browser and navigate to http://localhost:8000. The interface will display incoming UART data with timestamps in real-time.
+- STM32F407G-DISC microcontroller (or any STM32 board with UART).
+- USB-to-UART converter (e.g., ST-Link, FTDI, or PL2303).
 
-Monitor DataAs the STM32 sends data (e.g., text messages or sensor values), the web page updates automatically, showing each message alongside its receipt time.
+### 💻 Software
 
-Project Structure
-The project is organized as follows:
+- STM32CubeIDE (or equivalent) for microcontroller programming.
+- Python 3.8+ environment.
+- A modern web browser (Chrome, Firefox, etc.).
+- (Optional) Tera Term or PuTTY for UART testing.
 
-Web Server Files: Contains the FastAPI application and WebSocket logic for handling incoming data.
-UART Monitoring: Manages serial port communication to read data from the STM32.
-Web Interface: A simple HTML template for displaying data in a clean, scrollable list.
-Microcontroller Firmware: Example firmware for the STM32 to send UART data (provided for reference).
+---
 
-Troubleshooting
+## 🚀 Installation
 
-Serial Port Issues: Ensure the correct serial port is selected and no other application is using it.
-No Data Displayed: Confirm the STM32 is transmitting data and the baud rate matches the server configuration.
-WebSocket Disconnection: The web interface automatically attempts to reconnect every 2 seconds if the connection is lost.
+### 1. Clone the Repository
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-Acknowledgments
+```bash
+git clone https://github.com/AhmetTalhaBicer/UART_Server.git
+cd UART_Server
+```
 
-FastAPI: For providing a lightweight and powerful framework for building APIs and WebSocket servers.
-STM32CubeIDE: For enabling easy firmware development for the STM32 microcontroller.
-Community: Inspired by open-source IoT and embedded systems projects.
+### 2. Set Up Python Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Required packages:
+
+- `fastapi`
+- `uvicorn`
+- `pyserial`
+
+### 3. Program the STM32
+
+- Open STM32CubeIDE.
+- Configure **UART2** with a baud rate of **9600**.
+- Upload the provided firmware or your custom code to send UART data (e.g., `"Temp: 24.5C"`).
+
+### 4. Configure the Serial Port
+
+Update `config.py` or the corresponding section of the server code:
+
+```python
+SERIAL_PORT = "/dev/ttyUSB0"  # or COMX on Windows
+BAUD_RATE = 9600
+```
+
+---
+
+## 🧪 Usage
+
+### 1. Start the FastAPI Server
+
+```bash
+uvicorn main:app --reload
+```
+
+### 2. Open the Web Dashboard
+
+Navigate to: [http://localhost:8000](http://localhost:8000)
+
+You’ll see a real-time feed of UART messages, each with a timestamp.
+
+---
+
+## 📁 Project Structure
+
+```bash
+UART_Server/
+│
+├── main.py           # Entry point, starts the server
+├── uart_monitor.py   # UART reading functionality
+├── server.py         # FastAPI server definitions
+├── templates/        # HTML templates
+│   └── index.html    # Web interface
+├── requirements.txt  # Dependencies
+├── LICENSE           # MIT License
+└── .gitignore        # Git ignore file
+```
+
+---
+
+## 🛠️ Troubleshooting
+
+- **Serial Port Not Found**
+  Ensure the correct port is selected and not used by another app.
+
+- **No Data Displayed**
+  Check if STM32 is sending data and the baud rate matches.
+
+- **WebSocket Disconnection**
+  The web client attempts to reconnect every 2 seconds automatically.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **FastAPI** – Modern and fast web framework.
+- **STM32CubeIDE** – Great tool for STM32 firmware development.
+- **The Open-Source Community** – Inspiration from countless IoT and embedded projects.
