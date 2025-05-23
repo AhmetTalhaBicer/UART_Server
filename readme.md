@@ -1,7 +1,3 @@
-Certainly! Here's the improved and more visually appealing version of your `README.md` in English, with better formatting and structure:
-
----
-
 # 📡 STM32 UART to FastAPI Web Monitor
 
 **Live monitor your embedded system data via a modern web interface.**
